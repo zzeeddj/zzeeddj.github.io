@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZED | Computer Science</title>
     <style>
-        /* --- 变量定义 --- */
         :root {
-            --bg-color: #050505; /* 更深邃的黑 */
+            --bg-color: #050505;
             --text-main: #f0f0f0;
             --text-muted: #888;
             --accent-color: #818cf8;
             --accent-glow: rgba(129, 140, 248, 0.5);
             --accent-gradient: linear-gradient(135deg, #e0e7ff 0%, #818cf8 50%, #4338ca 100%);
             
-            /* 升级后的卡片质感 */
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: rgba(255, 255, 255, 0.08);
-            --card-inner-light: inset 0 1px 0 0 rgba(255, 255, 255, 0.05); /* 顶部高光 */
+            --card-inner-light: inset 0 1px 0 0 rgba(255, 255, 255, 0.05); 
             
             --cursor-size: 600px;
         }
@@ -28,7 +26,6 @@
             box-sizing: border-box;
         }
 
-        /* 自定义滚动条 */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
@@ -36,19 +33,18 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 0%, #1a1b26 0%, var(--bg-color) 70%); /* 顶部环境光 */
+            background-image: radial-gradient(circle at 50% 0%, #1a1b26 0%, var(--bg-color) 70%); 
             color: var(--text-main);
             font-family: 'SF Mono', 'Fira Code', 'Roboto Mono', monospace;
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
             cursor: default;
-            font-size: 15px; /* 稍微调大基准字体 */
+            font-size: 15px; 
         }
 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
 
-        /* --- 背景特效 --- */
         .noise-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -64,7 +60,6 @@
             mix-blend-mode: screen;
         }
 
-        /* --- 主布局 --- */
         .main-wrapper {
             position: relative;
             z-index: 2;
@@ -74,7 +69,7 @@
             display: flex;
             flex-direction: column;
             padding: 2rem;
-            opacity: 0; animation: fadeIn 1s ease-out forwards; /* 入场动画 */
+            opacity: 0; animation: fadeIn 1s ease-out forwards; 
         }
 
         @keyframes fadeIn { to { opacity: 1; } }
@@ -83,12 +78,12 @@
             .main-wrapper {
                 flex-direction: row;
                 justify-content: space-between;
-                padding: 6rem 5rem; /* 增加边距让画面更舒展 */
+                padding: 6rem 5rem; 
                 gap: 6rem;
             }
             
             .profile-section {
-                width: 32%; /* 调整左侧比例 */
+                width: 32%; 
                 position: sticky;
                 top: 6rem;
                 height: calc(100vh - 12rem);
@@ -98,12 +93,11 @@
             }
 
             .content-section {
-                width: 63%; /* 调整右侧比例 */
+                width: 63%; 
                 padding-top: 0.5rem;
             }
         }
 
-        /* --- 左侧：个人信息 --- */
         .tag-line {
             font-size: 0.75rem;
             color: var(--accent-color);
@@ -114,12 +108,11 @@
             align-items: center;
             background: rgba(129, 140, 248, 0.08);
             padding: 6px 12px;
-            border-radius: 100px; /* 胶囊圆角 */
+            border-radius: 100px;
             border: 1px solid rgba(129, 140, 248, 0.2);
             box-shadow: 0 0 15px rgba(129, 140, 248, 0.1);
         }
         
-        /* 增加一个小绿点 */
         .tag-line::before {
             content: ''; display: block; width: 6px; height: 6px; 
             background: #4ade80; border-radius: 50%; margin-right: 8px;
@@ -149,7 +142,7 @@
 
         .cursor-blink {
             display: inline-block;
-            width: 10px; height: 3px; /* 改为下划线光标 */
+            width: 10px; height: 3px; 
             background: var(--accent-color);
             margin-left: 5px;
             animation: blink 1s step-end infinite;
@@ -174,7 +167,7 @@
             font-size: 0.95rem;
             display: flex; align-items: center; width: fit-content;
             padding: 8px 16px;
-            margin-left: -16px; /* 抵消 padding */
+            margin-left: -16px; 
             border-radius: 8px;
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -191,7 +184,6 @@
         }
         .social-item:hover::before { opacity: 1; text-shadow: 0 0 8px var(--accent-color); }
 
-        /* --- 右侧内容 --- */
         .section-block { margin-bottom: 6rem; }
         
         .section-header {
@@ -206,7 +198,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.08);
             position: relative;
         }
-        /* 装饰性进度条 */
         .section-header::after {
             content: ''; position: absolute; bottom: -1px; left: 0; width: 40px; height: 3px; background: var(--accent-color);
             box-shadow: 0 0 10px var(--accent-glow);
@@ -217,21 +208,19 @@
             padding: 4px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05);
         }
 
-        /* --- 布局系统 --- */
         .gear-stack { display: flex; flex-direction: column; gap: 1.5rem; }
         .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
 
-        /* --- 通用卡片升级 --- */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             padding: 2rem;
-            border-radius: 16px; /* 更大的圆角 */
+            border-radius: 16px; 
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(20px); /* 强模糊 */
+            backdrop-filter: blur(20px); 
             -webkit-backdrop-filter: blur(20px);
-            box-shadow: var(--card-inner-light), 0 20px 40px rgba(0,0,0,0.2); /* 内发光+外投影 */
+            box-shadow: var(--card-inner-light), 0 20px 40px rgba(0,0,0,0.2); 
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
@@ -242,7 +231,6 @@
             box-shadow: var(--card-inner-light), 0 30px 60px rgba(0,0,0,0.4), 0 0 30px rgba(129, 140, 248, 0.05);
         }
 
-        /* --- Hardware 卡片样式 --- */
         .gear-card {
             display: flex; justify-content: space-between; align-items: center;
         }
@@ -263,7 +251,6 @@
         .status-light.on { background: #4ade80; box-shadow: 0 0 8px #4ade80; }
         .status-light.sleep { background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
         
-        /* 状态灯呼吸动画 */
         .status-light.on::after {
             content: ''; position: absolute; top:-4px; left:-4px; right:-4px; bottom:-4px;
             border-radius: 50%; border: 1px solid #4ade80; opacity: 0; animation: ripple 2s infinite;
@@ -277,7 +264,6 @@
         .spec-highlight { color: #e0e0e0; font-weight: 600; margin-left: 4px; }
 
 
-        /* --- Skill 卡片样式 --- */
         .skill-header {
             display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.2rem;
         }
@@ -302,7 +288,6 @@
         }
         .card:hover .skill-bar { width: var(--p); }
 
-        /* --- Footer --- */
         footer {
             margin-top: 6rem; color: #333; font-size: 0.75rem; text-align: right;
             border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;
@@ -440,14 +425,12 @@
     </div>
 
     <script>
-        // 光标特效
         const glow = document.getElementById('glow');
         document.addEventListener('mousemove', (e) => {
             glow.style.setProperty('--x', e.clientX + 'px');
             glow.style.setProperty('--y', e.clientY + 'px');
         });
 
-        // 打字机特效
         const textEl = document.getElementById('typing-text');
         const texts = [
             "Initializing...",
@@ -468,9 +451,9 @@
                 textEl.textContent = current.substring(0, cIndex + 1);
                 cIndex++;
             }
-            let speed = isDel ? 30 : 60; // 稍微调快了一点打字速度
+            let speed = isDel ? 30 : 60; 
             if (!isDel && cIndex === current.length) {
-                speed = 2500; // 停顿更久一点
+                speed = 2500; 
                 isDel = true;
             } else if (isDel && cIndex === 0) {
                 isDel = false;
